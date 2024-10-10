@@ -33,44 +33,72 @@
 
 <body>
     <div id="fixed-with-aspect-ratio">
-        <p id="info">
-            Selecting the "biggest" screen axis does not maintain aspect ratio.
-        </p>
+        <section>
+            <p id="info">
+                Selecting the "biggest" screen axis does not maintain aspect ratio.
+            </p>
+            <p>
+            <div>max-height: 60vh;</div>
+            <div>max-width: 60vw;</div>
+            <div>aspect-ratio: 1 / 1;</div>
+            </p>
+
+            <label>
+                <input type="radio" name="wh" id="h"> height: <span id="h-val"></span>
+            </label>
+            <hr />
+            <label>
+                <input type="radio" name="wh" id="w"> width: <span id="w-val"></span>
+            </label>
+        </section>
         <p>
-        <div>max-height: 60vh;</div>
-        <div>max-width: 60vw;</div>
-        <div>aspect-ratio: 1 / 1;</div>
+            <button id="fix-it">Fix aspect ratio!</button>
         </p>
+    </div>
+    <script type="module">
+        const chkH = document.getElementById("h");
+        const chkW = document.getElementById("w");
+        const div = document.getElementById("fixed-with-aspect-ratio");
 
-        <label>
-            <input type="radio" name="wh" id="h"> Set height 90vh
-        </label>
-        <hr />
-        <label>
-            <input type="radio" name="wh" id="w"> Set width 90vw
-        </label>
-        <script type="module">
-            const chkH = document.getElementById("h");
-            const chkW = document.getElementById("w");
-            const div = document.getElementById("fixed-with-aspect-ratio");
-            div.addEventListener("input", evt => {
-                const targ = evt.target;
-                switch (targ) {
-                    case chkH:
-                        div.style.width = "";
-                        div.style.height = "90vh";
-                        break;
-                    case chkW:
-                        div.style.height = "";
-                        div.style.width = "90vw";
-                        break;
-                    default:
-                        console.error("Unexpected evt.target:", targ, evt);
-                }
-            });
-            chkW.checked = true;
-            div.style.width = "60vw";
+        const strHval = "90vh";
+        const strWval = "90vw";
+        const spanHval = document.getElementById("h-val");
+        const spanWval = document.getElementById("w-val");
+        spanHval.textContent = strHval;
+        spanWval.textContent = strWval;
+        div.addEventListener("input", evt => {
+            const targ = evt.target;
+            switch (targ) {
+                case chkH:
+                    div.style.width = "";
+                    div.style.height = strHval;
+                    break;
+                case chkW:
+                    div.style.height = "";
+                    div.style.width = strWval;
+                    break;
+                default:
+                    console.error("Unexpected evt.target:", targ, evt);
+            }
+        });
+        chkW.checked = true;
+        div.style.width = "60vw";
+
+        const btnFixIt = document.getElementById("fix-it");
+        btnFixIt.addEventListener("click", evt => { fixRatio(); });
+
+        function fixRatio() {
+            const w = div.clientWidth;
+            const h = div.clientHeight;
+            console.log(w, h);
+            const minWH = Math.min(w, h);
+            if (w == minWH) {
+                div.style.height = `${minWH}px`;
+            } else {
+                div.style.width = `${minWH}px`;
+            }
+        }
 
 
-        </script>
+    </script>
 </body>
