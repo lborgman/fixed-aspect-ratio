@@ -7,4 +7,4 @@ aspect-ratio: 1 / 1;
 position: fixed;".
 ```
 
-You can test it here: https://lborgman.github.io/fixed-aspect-ratio/fixed-aspect-ratio.html
+You can [test it here](https://lborgman.github.io/fixed-aspect-ratio/fixed-aspect-ratio.html).
