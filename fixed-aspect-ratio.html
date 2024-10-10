@@ -1,25 +1,35 @@
 <!DOCTYPE html>
-<style>
-    body {
-        background-color: black;
-    }
 
-    #info {
-        font-weight: 700;
-    }
-    #fixed-with-aspect-ratio {
-        border: 2px dotted red;
-        background-color: orange;
-        padding: 8px;
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root {
+            font-size: 16px;
+        }
 
-        position: fixed;
-        top: 0px;
-        left: 0px;
-        aspect-ratio: 1 / 1;
-        max-height: 60vh;
-        max-width: 60vw;
-    }
-</style>
+        body {
+            background-color: black;
+        }
+
+        #info {
+            font-weight: 700;
+        }
+
+        #fixed-with-aspect-ratio {
+            border: 2px dotted red;
+            background-color: orange;
+            padding: 8px;
+
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            aspect-ratio: 1 / 1;
+            max-height: 60vh;
+            max-width: 60vw;
+        }
+    </style>
+</head>
 
 <body>
     <div id="fixed-with-aspect-ratio">
