@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<style>
+    body {
+        background-color: black;
+    }
+
+    #info {
+        font-weight: 700;
+    }
+    #fixed-with-aspect-ratio {
+        border: 2px dotted red;
+        background-color: orange;
+        padding: 8px;
+
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        aspect-ratio: 1 / 1;
+        max-height: 60vh;
+        max-width: 60vw;
+    }
+</style>
+
+<body>
+    <div id="fixed-with-aspect-ratio">
+        <p id="info">
+            "Biggest" direction does not work.
+        </p>
+        <p>
+        <div>max-height: 60vh;</div>
+        <div>max-width: 60vw;</div>
+        <div>aspect-ratio: 1 / 1;</div>
+        </p>
+
+        <label>
+            <input type="radio" name="wh" id="h"> Set height 90vh
+        </label>
+        <hr />
+        <label>
+            <input type="radio" name="wh" id="w"> Set width 90vw
+        </label>
+        <script type="module">
+            const chkH = document.getElementById("h");
+            const chkW = document.getElementById("w");
+            const div = document.getElementById("fixed-with-aspect-ratio");
+            div.addEventListener("input", evt => {
+                const targ = evt.target;
+                switch (targ) {
+                    case chkH:
+                        div.style.width = "";
+                        div.style.height = "90vh";
+                        break;
+                    case chkW:
+                        div.style.height = "";
+                        div.style.width = "90vw";
+                        break;
+                    default:
+                        console.error("Unexpected evt.target:", targ, evt);
+                }
+            });
+            chkW.checked = true;
+            div.style.width = "60vw";
+
+
+        </script>
+</body>
